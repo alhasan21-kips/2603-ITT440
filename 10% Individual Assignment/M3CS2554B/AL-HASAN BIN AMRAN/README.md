@@ -19,7 +19,10 @@
 ---
 
 ## 📌 Project Overview
+## 🎥 Demo Video
 
+Watch the full demonstration here:  
+https://youtu.be/bXaaAB_mEqQ
 This project implements a **Batch Image Processing System** that demonstrates the use of:
 
 - Sequential Programming  
