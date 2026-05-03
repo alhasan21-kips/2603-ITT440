@@ -1,8 +1,6 @@
 
 
----
 
-````md
 # 🖼️ Batch Image Processing System  
 ### Concurrent & Parallel Programming Project
 
