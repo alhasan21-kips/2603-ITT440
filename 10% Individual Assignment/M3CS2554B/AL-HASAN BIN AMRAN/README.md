@@ -19,10 +19,7 @@
 ---
 
 ## 📌 Project Overview
-## 🎥 Demo Video
 
-Watch the full demonstration here:  
-https://youtu.be/bXaaAB_mEqQ
 This project implements a **Batch Image Processing System** that demonstrates the use of:
 
 - Sequential Programming  
@@ -280,8 +277,7 @@ python main.py
 This project demonstrates that **performance depends on the nature of the task**, not just the method used.
 
 ---
-- Add **speedup & efficiency formulas (very strong academically)**
-- Help you write **GitHub commit description + README badges**
+## 🎥 Demo Video
 
-Just tell me 👍
-```
+Watch the full demonstration here:  
+https://youtu.be/bXaaAB_mEqQ
