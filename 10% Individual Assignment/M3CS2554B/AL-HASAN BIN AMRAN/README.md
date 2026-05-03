@@ -1,68 +1,91 @@
-# AL-HASAN BIN AMRAN
 
-# 🖼️ Batch Image Processing System (Concurrent & Parallel Programming)
 
-## 📌 Overview
-This project demonstrates the implementation of **sequential**, **concurrent (multithreading)**, and **parallel (multiprocessing)** approaches in Python using a **Batch Image Processing System**.
+---
 
-The system processes a large number of images and compares execution performance between different programming models.
+````md
+# 🖼️ Batch Image Processing System  
+### Concurrent & Parallel Programming Project
+
+---
+
+## 📋 Student Information
+
+| Field | Details |
+|------|--------|
+| Name | Al-hasan Bin Amran |
+| Student ID | 2024943897 |
+| Subject | ITT440 - Network Programming |
+| Group | CS2554B |
+| Date | May 2026 |
+
+---
+
+## 📌 Project Overview
+
+This project implements a **Batch Image Processing System** that demonstrates the use of:
+
+- Sequential Programming  
+- Concurrent Programming (Threading)  
+- Parallel Programming (Multiprocessing)  
+
+The system processes a large number of images and compares execution performance between these approaches.
 
 ---
 
 ## 🎯 Objectives
-- Process a large volume of images automatically
-- Implement:
-  - Sequential processing
-  - Concurrent processing (threading)
-  - Parallel processing (multiprocessing)
-- Measure and compare execution time
-- Visualize performance using a graph
-- Provide a GUI for user interaction
+
+- Process a large volume of image data efficiently  
+- Compare execution time between different approaches  
+- Demonstrate the use of concurrency and parallelism  
+- Visualize performance using graphs  
+- Provide a user-friendly GUI  
 
 ---
 
 ## 🛠️ Technologies Used
-- Python 3.x
-- Tkinter (GUI)
-- Pillow (Image Processing)
-- multiprocessing (Parallel Programming)
-- concurrent.futures (Threading)
-- matplotlib (Graph Visualization)
+
+- Python 3.x  
+- Tkinter (GUI)  
+- Pillow (Image Processing)  
+- `concurrent.futures` (Threading)  
+- `multiprocessing` (Parallel Processing)  
+- Matplotlib (Graph Visualization)  
 
 ---
 
-## ⚙️ Features
-- 📁 Select input and output folders
-- 🧪 Auto-generate large number of images
-- ⚡ Three processing methods:
-  - Sequential
-  - Threading
-  - Multiprocessing
-- 🧠 CPU core detection
-- ⏱️ Execution time measurement
-- 📊 Performance graph visualization
-- 🖥️ Responsive GUI (non-freezing)
+## ⚙️ System Features
+
+- 📁 Select input and output folders  
+- 🧪 Generate large number of images automatically  
+- ⚡ Process images using:
+  - Sequential method  
+  - Threading (concurrent)  
+  - Multiprocessing (parallel)  
+- 🧠 Detect CPU cores using `cpu_count()`  
+- ⏱️ Measure execution time  
+- 📊 Display performance graph  
+- 🖥️ Responsive GUI (non-freezing)  
 
 ---
 
-## 🧩 System Design
+## 🧩 System Workflow
 
-### 🔹 Workflow
-1. User selects input & output folder
-2. User generates images (optional)
+1. User selects input and output folder  
+2. User generates images (optional)  
 3. System processes images using:
-   - Sequential method
-   - Threading method
-   - Multiprocessing method
-4. Execution time is recorded
-5. Graph is displayed for comparison
+   - Sequential  
+   - Threading  
+   - Multiprocessing  
+4. Execution time is recorded  
+5. Performance graph is displayed  
 
 ---
 
 ## 🧠 Concepts Applied
 
-### 1. Sequential Processing
-Processes images one by one:
+### 🔹 Sequential Processing
+Processes tasks one by one.
+
 ```python
 for img in images:
     process(img)
@@ -70,29 +93,29 @@ for img in images:
 
 ---
 
-### 2. Concurrent Programming (Threading)
+### 🔹 Concurrent Programming (Threading)
 
-Uses threads for I/O-bound tasks:
+Executes multiple tasks concurrently.
 
 ```python
 from concurrent.futures import ThreadPoolExecutor
 ```
 
-* Improves performance for file operations
-* Limited by Python GIL
+* Efficient for I/O-bound tasks
+* Limited by Python Global Interpreter Lock (GIL)
 
 ---
 
-### 3. Parallel Programming (Multiprocessing)
+### 🔹 Parallel Programming (Multiprocessing)
 
-Uses multiple CPU cores:
+Executes tasks using multiple CPU cores.
 
 ```python
-from multiprocessing import Pool
+from multiprocessing import Pool, cpu_count
 ```
 
 * True parallel execution
-* Best performance for CPU-intensive tasks
+* Suitable for CPU-bound tasks
 
 ---
 
@@ -102,7 +125,7 @@ Execution time is measured using:
 
 ```python
 start = time.time()
-# process
+# processing
 end = time.time()
 ```
 
@@ -118,17 +141,41 @@ Processing 1000 images...
 ===== PERFORMANCE RESULT =====
 Sequential Processing      : 25.40 seconds
 Threading (Concurrent)    : 18.20 seconds
-Multiprocessing (Parallel): 9.75 seconds
+Multiprocessing (Parallel): 20.10 seconds
 ```
 
 ---
 
-## 📈 Performance Graph
+## 📈 Performance Analysis
 
-A bar chart is generated using matplotlib to compare execution times:
+In this experiment:
+
+* Sequential processing is the slowest
+* Threading performs faster
+* Multiprocessing may not always be the fastest
+
+### 🔍 Explanation
+
+Although multiprocessing is theoretically faster, the results show that **threading performs better** due to:
+
+* The task being **I/O-bound** (reading and saving images)
+* Threading handles I/O efficiently
+* Multiprocessing introduces overhead:
+
+  * Process creation
+  * Memory usage
+  * Inter-process communication
+* Windows uses **spawn method**, increasing overhead
+
+---
+
+## 📊 Graph Visualization
+
+A bar chart is generated using matplotlib:
 
 * X-axis → Processing method
-* Y-axis → Time (seconds)
+* Y-axis → Execution time
+* Lower bar → Faster performance
 
 ---
 
@@ -139,7 +186,7 @@ The system uses Tkinter to provide:
 * Folder selection
 * Image generation
 * Start processing button
-* Result display
+* Real-time result display
 
 ---
 
@@ -150,29 +197,14 @@ The system uses Tkinter to provide:
 **Problem:** GUI becomes unresponsive during processing
 **Solution:** Use threading to run tasks in background
 
-```python
-threading.Thread(target=start_processing).start()
-```
-
 ---
 
-### ❌ Duplicate GUI Windows
-
-**Problem:** Multiprocessing creates multiple GUI windows
-**Solution:**
-
-```python
-if __name__ == "__main__":
-```
-
----
-
-### ❌ Matplotlib Warning
+### ❌ Matplotlib Thread Issue
 
 **Problem:**
 
 ```
-Starting a Matplotlib GUI outside of the main thread
+Matplotlib GUI outside main thread warning
 ```
 
 **Solution:**
@@ -186,7 +218,7 @@ root.after(0, lambda: show_graph(...))
 ### ❌ Image Overwriting
 
 **Problem:** Generated images overwrite existing ones
-**Solution:** Continue numbering filenames
+**Solution:** Continue filename numbering dynamically
 
 ---
 
@@ -207,15 +239,15 @@ project/
 
 ### 1. Install dependencies
 
-```bash
+```
 pip install pillow matplotlib
 ```
 
 ---
 
-### 2. Run program
+### 2. Run the program
 
-```bash
+```
 python main.py
 ```
 
@@ -224,7 +256,7 @@ python main.py
 ### 3. Steps
 
 1. Select input folder
-2. Generate images (optional)
+2. Generate images
 3. Select output folder
 4. Click "Start Processing"
 
@@ -232,15 +264,23 @@ python main.py
 
 ## 📌 Notes
 
-* Recommended image count: **1000–5000**
-* Avoid extremely large numbers (e.g. 1,000,000+) due to system limitations
-* Multiprocessing gives best performance
+* Recommended dataset size: **1000–5000 images**
+* Avoid extremely large datasets (e.g. millions)
+* Performance depends on task type (I/O vs CPU-bound)
 
 ---
 
 ## 🧠 Conclusion
 
 * Sequential processing is the slowest
-* Threading improves performance for I/O tasks
-* Multiprocessing is the fastest due to multi-core utilization
+* Threading performs well for I/O-bound tasks
+* Multiprocessing is best for CPU-intensive tasks
 
+This project demonstrates that **performance depends on the nature of the task**, not just the method used.
+
+---
+- Add **speedup & efficiency formulas (very strong academically)**
+- Help you write **GitHub commit description + README badges**
+
+Just tell me 👍
+```
